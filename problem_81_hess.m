@@ -44,4 +44,10 @@ function HessFx = problem_81_hess(X)
     column(nz) = n;
     values(nz) = tmp;
     HessFx = sparse(row, column, values, n, n);
+
+    % check if the hessian is SPD
+    b = trace(HessFx);
+    if b <= 0
+        warning('The trace of the hessian is non-positive');
+    end
 end

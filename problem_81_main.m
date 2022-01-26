@@ -7,13 +7,7 @@ btmax = 50; alpha0 = 1; n_values = [1e3, 1e4, 1e5, 1e6, 1e7];
 f = @(x) problem_81_function(x);
 gradf = @(x) problem_81_grad(x);
 Hessf = @(x) problem_81_hess(x);
-H_test = Hessf(0.5 * ones(10, 1));
-lambda = min(eigs(H_test, 10));
-if lambda <= 0
-    disp(lambda);
-    disp(['We cannot apply the Newton method since the Hessian' ...
-        ' is not positive definite.']);
-end
+
 disp('*** STEEPEST DESCENT WITH BACKTRACKING **');
 for i = 1:length(n_values)
     n = n_values(i);
